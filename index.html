@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapacho Digital - Presentación</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome (Logos e íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <!-- Diapositiva 1: Inicio -->
+        <div class="slide active" id="slide-1">
+            <div class="content center-content">
+                <i class="fa-solid fa-tree lapacho-icon fade-in-up"></i>
+                <h3 class="subtitle fade-in-up delay-1">UTN FRRe - Extensión Áulica Formosa | Base de Datos I — Parcial 2</h3>
+                <h1 class="title fade-in-up delay-2">Lapacho Digital</h1>
+                <h2 class="subheading fade-in-up delay-3">Una biblioteca digital para formoseños <span class="tag-part">Parte II</span></h2>
+                <div class="team-section fade-in-up delay-4">
+                    <p><i class="fa-solid fa-users"></i> <strong>Integrantes:</strong> Marco Graña, Matías Ramírez</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 2: MER Actualizado -->
+        <div class="slide" id="slide-2">
+            <div class="content split-content">
+                <div class="text-area">
+                    <h2 class="slide-title">Modelo de Entidad Relación Actualizado</h2>
+                    <p>En esta segunda etapa del proyecto actualizamos el diseño conceptual para reflejar los nuevos requerimientos del sistema.</p>
+                    <p>Se agregaron la tabla <strong>Detalle_Compra</strong> que está relacionada con <strong>Compras</strong>, permitiendo registrar el detalle de cada libro adquirido en una compra.</p>
+                </div>
+                <div class="image-area">
+                    <img src="imgs/MER_Actualizado.svg" alt="Modelo de Entidad Relación Actualizado" class="clickable-diagram" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 3: Modelo Relacional Actualizado -->
+        <div class="slide" id="slide-3">
+            <div class="content split-content">
+                <div class="text-area">
+                    <h2 class="slide-title">Modelo Relacional Actualizado</h2>
+                    <p>Partiendo del diseño conceptual actualizado, trasladamos los cambios al modelo lógico relacional.</p>
+                    <p>Le agregamos la tabla intermedia <code>Libros_Categorías</code> y agregamos la tabla <code>Detalle_Compra</code> que está conectada con <code>Compras</code> y <code>Libros</code>.</p>
+                </div>
+                <div class="image-area">
+                    <img src="imgs/MR_bd.svg" alt="Modelo Relacional Actualizado" class="clickable-diagram" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 4: Normalización -->
+        <div class="slide" id="slide-4">
+            <div class="content norm-content">
+                <h2 class="slide-title">Normalización</h2>
+
+                <!-- Fila Superior: Definición y Objetivo -->
+                <div class="norm-top-grid">
+                    <div class="norm-card">
+                        <div class="norm-card-header">
+                            <i class="fa-solid fa-database"></i>
+                            <h3>¿Qué es?</h3>
+                        </div>
+                        <p>Organizar las tablas para no repetir datos: cada dato se guarda en un solo lugar.</p>
+                    </div>
+
+                    <div class="norm-card">
+                        <div class="norm-card-header">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <h3>¿Qué evita?</h3>
+                        </div>
+                        <p>Anomalías de inserción, actualización y eliminación.</p>
+                    </div>
+                </div>
+
+                <!-- Fila Inferior: Formas Normales -->
+                <div class="norm-fn-grid">
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">1FN</div>
+                        <h4>Primera Forma Normal</h4>
+                        <p><i class="fa-solid fa-table-cells"></i> Un solo valor por celda, sin grupos repetidos.</p>
+                    </div>
+
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">2FN</div>
+                        <h4>Segunda Forma Normal</h4>
+                        <p><i class="fa-solid fa-key"></i> Cumple la 1FN y cada dato depende de la clave completa.</p>
+                    </div>
+
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">3FN</div>
+                        <h4>Tercera Forma Normal</h4>
+                        <p><i class="fa-solid fa-diagram-project"></i> Cumple la 2FN y ningún dato depende de otro que no sea clave.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 5: En nuestro proyecto (3FN) -->
+        <div class="slide" id="slide-5">
+            <div class="content project-content">
+                <h2 class="slide-title">En nuestro proyecto (3FN)</h2>
+
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h4>Usuarios y Roles</h4>
+                        <p><code>Usuarios</code> guarda solo <code>idRoles</code>; el nombre del rol está en <code>Roles</code>.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <h4>Compras y Detalles</h4>
+                        <p><code>Compras</code> guarda los datos generales y <code>Detalle_Compra</code> guarda cada libro comprado.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-card-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h4>Relaciones Muchos a Muchos</h4>
+                        <p><code>Libros_Autores</code> y <code>Libros_Categorias</code> resuelven las relaciones muchos a muchos.</p>
+                    </div>
+                </div>
+
+                <div class="result-banner">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p><strong>Resultado:</strong> sin datos repetidos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 6: Estructura y funcionamiento de BibliotecaDigital -->
+        <div class="slide" id="slide-6">
+            <div class="content">
+                <h2 class="slide-title">Estructura y funcionamiento de BibliotecaDigital</h2>
+                <p class="slide-intro">El script SQL trabaja sobre la base de datos <code>BibliotecaDigital</code>, simulando el funcionamiento de una biblioteca digital que permite administrar libros, usuarios y compras.</p>
+
+                <div class="sql-blocks-grid">
+                    <div class="sql-block-card">
+                        <div class="sql-block-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="sql-block-info">
+                            <h4>Carga de datos</h4>
+                            <p>Incorpora registros de ejemplo de usuarios, libros, autores, editoriales, categorías y compras.</p>
+                        </div>
+                    </div>
+
+                    <div class="sql-block-card">
+                        <div class="sql-block-icon">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="sql-block-info">
+                            <h4>Funciones y procedimientos</h4>
+                            <p>Automatizan operaciones como calcular descuentos, obtener totales y registrar compras.</p>
+                        </div>
+                    </div>
+
+                    <div class="sql-block-card">
+                        <div class="sql-block-icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <div class="sql-block-info">
+                            <h4>Triggers y auditoría</h4>
+                            <p>Validan los precios de los libros y registran automáticamente sus modificaciones.</p>
+                        </div>
+                    </div>
+
+                    <div class="sql-block-card">
+                        <div class="sql-block-icon">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <div class="sql-block-info">
+                            <h4>Consultas SQL</h4>
+                            <p>Permiten obtener información, estadísticas y resúmenes sobre el catálogo y las compras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 7: Herramientas y funcionalidades implementadas -->
+        <div class="slide" id="slide-7">
+            <div class="content">
+                <h2 class="slide-title">Herramientas y funcionalidades implementadas</h2>
+                <p class="slide-intro">El proyecto también incorpora herramientas para garantizar el correcto funcionamiento y la integridad de la información.</p>
+
+                <div class="tools-grid">
+                    <!-- Conceptos Destacados: Consultas, Seguridad y Respaldo -->
+                    <div class="tool-card pillar">
+                        <div class="tool-card-header">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            <h4>Consultas avanzadas</h4>
+                        </div>
+                        <p>Utilización de <code>JOIN</code>, <code>GROUP BY</code>, <code>HAVING</code> y funciones agregadas para analizar los datos.</p>
+                    </div>
+
+                    <div class="tool-card pillar">
+                        <div class="tool-card-header">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <h4>Seguridad y permisos</h4>
+                        </div>
+                        <p>Creación de usuarios con diferentes niveles de acceso mediante <code>GRANT</code> y <code>REVOKE</code>.</p>
+                    </div>
+
+                    <div class="tool-card pillar">
+                        <div class="tool-card-header">
+                            <i class="fa-solid fa-server"></i>
+                            <h4>Backups y recuperación</h4>
+                        </div>
+                        <p>Demostración de copias de seguridad y procedimientos para recuperar la información.</p>
+                    </div>
+
+                    <!-- Conceptos Complementarios -->
+                    <div class="tool-card secondary">
+                        <div class="tool-card-header">
+                            <i class="fa-solid fa-link"></i>
+                            <h4>Integridad referencial</h4>
+                        </div>
+                        <p>Restricciones que evitan relaciones incorrectas entre tablas y controlan las eliminaciones.</p>
+                    </div>
+
+                    <div class="tool-card secondary">
+                        <div class="tool-card-header">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <h4>Verificación final</h4>
+                        </div>
+                        <p>Comprobación de las funciones, procedimientos, triggers y registros almacenados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 8: Cierre -->
+        <div class="slide" id="slide-8">
+            <div class="content center-content">
+                <i class="fa-solid fa-hands-clapping icon-xlarge text-lapacho fade-in-up"></i>
+                <h1 class="title fade-in-up delay-1">¡Gracias por su atención!</h1>
+                <div class="next-step-box fade-in-up delay-2">
+                    <h3><i class="fa-solid fa-laptop-code"></i> Aplicación de lo dado en nuestro proyecto</h3>
+                    <p>Hemos preparado un script con todo lo explicado para ver el funcionamiento real de <code>BibliotecaDigital</code> en el gestor de base de datos.</p>
+                    <p><strong>Demostración práctica:</strong> Creación de tablas normalizadas, relaciones e inserción de registros de prueba.</p>
+                    <p><strong>Pruebas en vivo:</strong> Ejecución de funciones, procedimientos almacenados, triggers de auditoría y consultas analíticas.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal para agrandar la imagen con zoom -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></span>
+        <div class="modal-zoom-container">
+            <img id="expandedImg" class="modal-img-zoom">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

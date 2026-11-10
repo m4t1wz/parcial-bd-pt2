@@ -1,0 +1,519 @@
+/* Variables de Tema Claro y Marrón Pastel */
+:root {
+    --bg-color: #ffffff; /* Fondo blanco puro */
+    --text-main: #333333; /* Texto oscuro para legibilidad */
+    --text-muted: #555555; /* Texto secundario */
+    --lapacho-pink: #d5bdaf; /* Marrón clarito pastel principal */
+    --lapacho-dark: #9c6644; /* Marrón más fuerte para textos destacados */
+    --card-bg: #fdfbf7; /* Crema muy claro para el fondo de las tarjetas */
+    --accent: #b08d6a; /* Marrón medio para acentos/iconos */
+    --border-color: #e3d5ca; /* Marrón muy suave para los dividers/bordes */
+    
+    --font-head: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow: hidden;
+}
+
+/* Tipografía y colores útiles */
+h1, h2, h3, h4 { font-family: var(--font-head); color: #222; }
+.text-lapacho { color: var(--lapacho-dark); }
+.w-100 { width: 100%; }
+
+/* Contenedor Principal */
+.presentation-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Diapositivas */
+.slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    transform: translateY(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 10;
+}
+
+/* Layouts de contenido */
+.content {
+    max-width: 1100px;
+    width: 100%;
+}
+.center-content { text-align: center; }
+.split-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+.text-area { flex: 1; }
+.image-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    min-width: 0;
+}
+
+/* Estilos de Textos */
+.title { font-size: 4rem; font-weight: 800; color: var(--lapacho-dark); margin-bottom: 0.5rem; }
+.subtitle { font-size: 1.2rem; color: #777; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; font-weight: bold; }
+.subheading { font-size: 2rem; font-weight: 300; margin-bottom: 3rem; color: var(--text-muted); }
+.tag-part {
+    display: inline-block;
+    background: var(--card-bg);
+    color: var(--lapacho-dark);
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.25rem 0.85rem;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 0.8rem;
+    border: 1px solid var(--lapacho-pink);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.slide-title { font-size: 2.8rem; border-bottom: 3px solid var(--lapacho-pink); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 2rem; }
+.team-section { background: var(--card-bg); padding: 1rem 2rem; border-radius: 50px; display: inline-block; font-size: 1.1rem; border: 1px solid var(--border-color); }
+code { background: #f1ede9; padding: 2px 6px; border-radius: 4px; font-weight: bold; color: var(--lapacho-dark); }
+
+/* Iconos */
+.lapacho-icon { font-size: 5rem; color: var(--lapacho-pink); margin-bottom: 1rem; }
+.icon-large { font-size: 3rem; margin-bottom: 1rem; color: var(--lapacho-dark); }
+.icon-xlarge { font-size: 5rem; margin-bottom: 2rem; }
+
+/* Listas Animadas (Slide 2 y 6) */
+.animated-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+.animated-list li {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-left: 5px solid var(--lapacho-pink);
+    border-right: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.animated-list i { font-size: 2rem; color: var(--accent); margin-top: 0.3rem; }
+.animated-list p { color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6; }
+.animated-list strong { font-size: 1.2rem; color: var(--text-main); }
+
+/* Tarjetas y Grillas */
+.comparison-cards { display: flex; gap: 2rem; justify-content: center; }
+.card { flex: 1; padding: 3rem; border-radius: 15px; background: var(--card-bg); text-align: center; border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.card-red { border-top: 5px solid #a38775; }
+.card-lapacho { border-top: 5px solid var(--lapacho-pink); }
+.card p { margin-top: 1rem; line-height: 1.6; color: var(--text-muted); }
+
+.grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.grid-item { background: var(--card-bg); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+.grid-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+.grid-item h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #222; }
+.grid-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
+/* Estilos Diapositiva 4: Normalización */
+.norm-content .slide-title {
+    margin-bottom: 1.8rem;
+}
+
+.norm-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.norm-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--lapacho-dark);
+    border-radius: 12px;
+    padding: 1.3rem 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+}
+
+.norm-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.norm-card-header i {
+    font-size: 1.4rem;
+    color: var(--lapacho-dark);
+}
+
+.norm-card-header h3 {
+    font-size: 1.25rem;
+    color: var(--lapacho-dark);
+}
+
+.norm-card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.norm-fn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.norm-fn-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--lapacho-pink);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.norm-fn-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.fn-badge {
+    align-self: flex-start;
+    background: var(--lapacho-dark);
+    color: #ffffff;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.norm-fn-card h4 {
+    font-size: 1.2rem;
+    color: #222;
+    margin-bottom: 0.8rem;
+}
+
+.norm-fn-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.norm-fn-card p i {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+/* Estilos Diapositiva 5: En nuestro proyecto (3FN) */
+.project-content .slide-title {
+    margin-bottom: 2rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.project-card-icon {
+    font-size: 2rem;
+    color: var(--lapacho-dark);
+    margin-bottom: 1rem;
+}
+
+.project-card h4 {
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: 0.75rem;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.result-banner {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 6px solid var(--lapacho-dark);
+    border-radius: 12px;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+}
+
+.result-banner i {
+    font-size: 2rem;
+    color: var(--lapacho-dark);
+}
+
+.result-banner p {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.result-banner strong {
+    color: var(--lapacho-dark);
+}
+
+/* Texto Introductorio General */
+.slide-intro {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+/* Diapositiva 6: Estructura y funcionamiento */
+.sql-blocks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.sql-block-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--lapacho-dark);
+    border-radius: 12px;
+    padding: 1.3rem 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sql-block-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.sql-block-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.sql-block-info h4 {
+    font-size: 1.2rem;
+    color: var(--lapacho-dark);
+    margin-bottom: 0.4rem;
+}
+
+.sql-block-info p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Diapositiva 7: Herramientas y funcionalidades implementadas */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.25rem;
+}
+
+.tool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem 1.3rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.tool-card.pillar {
+    grid-column: span 2;
+    border-top: 4px solid var(--lapacho-dark);
+}
+
+.tool-card.secondary {
+    grid-column: span 3;
+    border-top: 4px solid var(--accent);
+}
+
+.tool-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.tool-card-header i {
+    font-size: 1.4rem;
+    color: var(--lapacho-dark);
+}
+
+.tool-card.secondary .tool-card-header i {
+    color: var(--accent);
+}
+
+.tool-card-header h4 {
+    font-size: 1.1rem;
+    color: #222;
+    margin: 0;
+}
+
+.tool-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Imagen Diagrama y Modal */
+.clickable-diagram {
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: zoom-in;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background: white;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+}
+.clickable-diagram:hover { transform: scale(1.03); }
+
+/* Estilos especiales para el Zoom en el Modal */
+.modal {
+    display: none;
+    position: fixed; z-index: 100; left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    justify-content: center; align-items: center;
+    overflow: hidden;
+}
+.modal-zoom-container {
+    width: 90vw; height: 90vh;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; /* Evita scrollbars del navegador, lo manejamos con JS */
+}
+.modal-img-zoom {
+    max-width: 100%; max-height: 100%;
+    cursor: grab;
+    transition: transform 0.08s ease-out;
+}
+.modal-img-zoom:active { cursor: grabbing; }
+
+.close-modal {
+    position: absolute; top: 30px; right: 40px;
+    color: var(--text-main); font-size: 40px; font-weight: bold; cursor: pointer;
+    z-index: 101; background: var(--card-bg); border-radius: 50%; width: 50px; height: 50px;
+    display: flex; justify-content: center; align-items: center; border: 1px solid var(--border-color);
+}
+.close-modal:hover { background: var(--border-color); }
+
+/* Cierre (Slide 7) */
+.next-step-box {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 2rem;
+    text-align: left;
+    border-left: 6px solid var(--accent);
+    border-right: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.next-step-box h3 { color: var(--lapacho-dark); margin-bottom: 1rem; font-size: 1.5rem; }
+.next-step-box p { margin-bottom: 0.5rem; line-height: 1.5; font-size: 1.1rem; color: var(--text-muted); }
+
+/* Navegación Inferior */
+.navigation {
+    position: absolute;
+    bottom: 30px; left: 0; width: 100%;
+    display: flex; justify-content: center; align-items: center; gap: 2rem;
+    z-index: 50;
+}
+.nav-btn {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    color: var(--text-main); padding: 10px 20px; border-radius: 30px;
+    font-family: var(--font-body); font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.nav-btn:hover { background: var(--lapacho-pink); color: white; border-color: var(--lapacho-pink); }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.progress-indicator { font-weight: bold; letter-spacing: 2px; color: var(--text-muted); }
+
+/* Animaciones Entrada */
+.fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
