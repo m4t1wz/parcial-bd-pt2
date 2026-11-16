@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapacho Digital - Presentación</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome (Logos e íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <!-- Diapositiva 1: Inicio -->
+        <div class="slide active" id="slide-1">
+            <div class="content center-content">
+                <i class="fa-solid fa-tree lapacho-icon fade-in-up"></i>
+                <h3 class="subtitle fade-in-up delay-1">UTN FRRe - Extensión Áulica Formosa | Base de Datos I — Parcial 2</h3>
+                <h1 class="title fade-in-up delay-2">Lapacho Digital</h1>
+                <h2 class="subheading fade-in-up delay-3">Una biblioteca digital para formoseños <span class="tag-part">Parte II</span></h2>
+                <div class="team-section fade-in-up delay-4">
+                    <p><i class="fa-solid fa-users"></i> <strong>Integrantes:</strong> Marco Graña, Matías Ramírez</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 2: MER Actualizado -->
+        <div class="slide" id="slide-2">
+            <div class="content split-content">
+                <div class="text-area">
+                    <h2 class="slide-title">Modelo de Entidad Relación Actualizado</h2>
+                    <p>En esta segunda etapa del proyecto actualizamos el diseño conceptual para reflejar los nuevos requerimientos del sistema.</p>
+                    <p>Se agregaron la tabla <strong>Detalle_Compra</strong> que está relacionada con <strong>Compras</strong>, permitiendo registrar el detalle de cada libro adquirido en una compra.</p>
+                </div>
+                <div class="image-area">
+                    <img src="imgs/MER_Actualizado.svg" alt="Modelo de Entidad Relación Actualizado" class="clickable-diagram" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 3: Modelo Relacional Actualizado -->
+        <div class="slide" id="slide-3">
+            <div class="content split-content">
+                <div class="text-area">
+                    <h2 class="slide-title">Modelo Relacional Actualizado</h2>
+                    <p>Partiendo del diseño conceptual actualizado, trasladamos los cambios al modelo lógico relacional.</p>
+                    <p>Le agregamos la tabla intermedia <code>Libros_Categorías</code> y agregamos la tabla <code>Detalle_Compra</code> que está conectada con <code>Compras</code> y <code>Libros</code>.</p>
+                </div>
+                <div class="image-area">
+                    <img src="imgs/MR_bd.svg" alt="Modelo Relacional Actualizado" class="clickable-diagram" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 4: Normalización -->
+        <div class="slide" id="slide-4">
+            <div class="content norm-content">
+                <h2 class="slide-title">Normalización</h2>
+                <p class="slide-intro">La normalización es un proceso que organiza los datos en distintas tablas para reducir la duplicación y evitar anomalías al insertar, actualizar o eliminar información.</p>
+
+                <!-- Formas Normales -->
+                <div class="norm-fn-grid">
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">1FN</div>
+                        <h4>Primera Forma Normal</h4>
+                        <p><i class="fa-solid fa-table-cells"></i> Cada atributo contiene un valor único, sin listas ni grupos repetidos.</p>
+                    </div>
+
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">2FN</div>
+                        <h4>Segunda Forma Normal</h4>
+                        <p><i class="fa-solid fa-key"></i> Cumple 1FN y todos los atributos dependen de la clave primaria completa.</p>
+                    </div>
+
+                    <div class="norm-fn-card">
+                        <div class="fn-badge">3FN</div>
+                        <h4>Tercera Forma Normal</h4>
+                        <p><i class="fa-solid fa-diagram-project"></i> Cumple 2FN y los atributos no clave dependen directamente de la clave primaria, sin dependencias transitivas.</p>
+                    </div>
+                </div>
+
+                <!-- Aplicación en nuestro proyecto -->
+                <div class="norm-project-box">
+                    <div class="norm-project-header">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <h3>Aplicación en nuestro proyecto</h3>
+                    </div>
+                    <p>En nuestra biblioteca separamos la información en tablas como <code>Usuarios</code>, <code>Roles</code>, <code>Libros</code>, <code>Editoriales</code> y <code>Autores</code>. Por ejemplo, los datos de una editorial se almacenan una sola vez en <code>Editoriales</code>, y los libros se relacionan con ella mediante una clave foránea. Así evitamos repetir los datos de la editorial en cada libro.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 5: SQL – DDL y DML -->
+        <div class="slide" id="slide-5">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title">SQL – DDL y DML</h2>
+                    <p class="slide-intro">SQL es el lenguaje utilizado para gestionar bases de datos relacionales. Se divide, entre otros, en dos grupos de sentencias:</p>
+
+                    <!-- DDL Card -->
+                    <div class="sql-group-card ddl-card">
+                        <div class="sql-group-header">
+                            <span class="sql-badge ddl-badge">DDL</span>
+                            <h4>Data Definition Language</h4>
+                        </div>
+                        <p>Permite definir y modificar la estructura de la base de datos.</p>
+                        <div class="sql-commands">
+                            <span><code>CREATE</code></span>
+                            <span><code>ALTER</code></span>
+                            <span><code>DROP</code></span>
+                        </div>
+                    </div>
+
+                    <!-- DML Card -->
+                    <div class="sql-group-card dml-card">
+                        <div class="sql-group-header">
+                            <span class="sql-badge dml-badge">DML</span>
+                            <h4>Data Manipulation Language</h4>
+                        </div>
+                        <p>Permite insertar, modificar, eliminar y consultar los registros.</p>
+                        <div class="sql-commands">
+                            <span><code>INSERT</code></span>
+                            <span><code>UPDATE</code></span>
+                            <span><code>DELETE</code></span>
+                            <span><code>SELECT</code></span>
+                        </div>
+                    </div>
+
+                    <p class="sql-applied-hint">
+                        <i class="fa-solid fa-code"></i> <strong>Ejemplo aplicado al proyecto:</strong>
+                    </p>
+                </div>
+
+                <!-- Recuadro con Formato SQL a la derecha -->
+                <div class="code-area">
+                    <div class="sql-editor-window">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="editor-title"><i class="fa-solid fa-terminal"></i> script.sql</span>
+                        </div>
+                        <div class="editor-body">
+<pre><code><span class="sql-comment">-- DDL</span>
+<span class="sql-keyword">CREATE DATABASE</span> <span class="sql-name">BibliotecaDigital1</span>;
+
+<span class="sql-comment">-- DML</span>
+<span class="sql-keyword">INSERT INTO</span> <span class="sql-name">Roles</span> (<span class="sql-column">Nombre_Rol</span>)
+<span class="sql-keyword">VALUES</span> (<span class="sql-string">'Lector'</span>);
+
+<span class="sql-keyword">UPDATE</span> <span class="sql-name">Libros</span>
+<span class="sql-keyword">SET</span> <span class="sql-column">Precio</span> = <span class="sql-number">15000</span>
+<span class="sql-keyword">WHERE</span> <span class="sql-column">idLibros</span> = <span class="sql-number">1</span>;
+
+<span class="sql-keyword">SELECT</span> * <span class="sql-keyword">FROM</span> <span class="sql-name">Libros</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 6: Funciones escalares -->
+        <div class="slide" id="slide-6">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title">Funciones escalares</h2>
+                    <p class="slide-intro" style="margin-bottom: 0.5rem;">Las funciones escalares realizan operaciones sobre valores individuales y devuelven un resultado por cada fila consultada.</p>
+                    <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.2rem; line-height: 1.5;">Permiten transformar, calcular o presentar los datos de una manera más útil.</p>
+
+                    <!-- Lista de funciones en grid -->
+                    <div class="functions-grid">
+                        <div class="fn-mini-item">
+                            <code>UPPER()</code>
+                            <span>Convierte texto a mayúsculas.</span>
+                        </div>
+                        <div class="fn-mini-item">
+                            <code>ROUND()</code>
+                            <span>Redondea un número.</span>
+                        </div>
+                        <div class="fn-mini-item">
+                            <code>CONCAT()</code>
+                            <span>Une cadenas de texto.</span>
+                        </div>
+                        <div class="fn-mini-item">
+                            <code>YEAR()</code>
+                            <span>Extrae el año de una fecha.</span>
+                        </div>
+                        <div class="fn-mini-item">
+                            <code>LENGTH()</code>
+                            <span>Obtiene la longitud de un texto.</span>
+                        </div>
+                        <div class="fn-mini-item">
+                            <code>DATEDIFF()</code>
+                            <span>Calcula la diferencia entre dos fechas.</span>
+                        </div>
+                    </div>
+
+                    <p class="sql-applied-hint">
+                        <i class="fa-solid fa-code"></i> <strong>Ejemplo de nuestro proyecto:</strong>
+                    </p>
+                </div>
+
+                <!-- Recuadro SQL a la derecha -->
+                <div class="code-area">
+                    <div class="sql-editor-window">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="editor-title"><i class="fa-solid fa-terminal"></i> funciones_escalares.sql</span>
+                        </div>
+                        <div class="editor-body">
+<pre><code><span class="sql-keyword">SELECT</span>
+    <span class="sql-keyword">UPPER</span>(<span class="sql-name">Titulo</span>) <span class="sql-keyword">AS</span> <span class="sql-column">titulo</span>,
+    <span class="sql-keyword">ROUND</span>(<span class="sql-name">Precio</span> * <span class="sql-number">1.21</span>, <span class="sql-number">2</span>) <span class="sql-keyword">AS</span> <span class="sql-column">precio_con_iva</span>
+<span class="sql-keyword">FROM</span> <span class="sql-name">Libros</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 7: Funciones agregadas, GROUP BY y HAVING -->
+        <div class="slide" id="slide-7">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title agg-title">Funciones agregadas, GROUP BY y HAVING</h2>
+                    <p class="slide-intro" style="margin-bottom: 0.8rem; font-size: 1.02rem;">Las funciones agregadas realizan cálculos sobre un conjunto de registros y devuelven un resultado resumido.</p>
+
+                    <!-- Principales funciones agregadas -->
+                    <div class="agg-functions-box">
+                        <div class="agg-box-header">
+                            <i class="fa-solid fa-calculator"></i> Principales funciones:
+                        </div>
+                        <div class="agg-chips-row">
+                            <div class="agg-chip"><code>COUNT()</code> cuenta registros</div>
+                            <div class="agg-chip"><code>SUM()</code> suma valores</div>
+                            <div class="agg-chip"><code>AVG()</code> calcula promedio</div>
+                            <div class="agg-chip"><code>MAX()</code> valor máximo</div>
+                            <div class="agg-chip"><code>MIN()</code> valor mínimo</div>
+                        </div>
+                    </div>
+
+                    <!-- Cláusulas de agrupación y filtrado -->
+                    <div class="clauses-container">
+                        <div class="clause-item">
+                            <code>GROUP BY</code>
+                            <span>Agrupa registros que comparten un mismo valor.</span>
+                        </div>
+                        <div class="clause-item">
+                            <code>HAVING</code>
+                            <span>Filtra los grupos después de realizar la agrupación.</span>
+                        </div>
+                        <div class="clause-item">
+                            <code>WHERE</code>
+                            <span>Filtra registros individuales antes de agruparlos.</span>
+                        </div>
+                    </div>
+
+                    <p class="sql-applied-hint">
+                        <i class="fa-solid fa-code"></i> <strong>Ejemplo de nuestro proyecto:</strong>
+                    </p>
+                </div>
+
+                <!-- Recuadro SQL a la derecha -->
+                <div class="code-area">
+                    <div class="sql-editor-window">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="editor-title"><i class="fa-solid fa-terminal"></i> agrupacion_having.sql</span>
+                        </div>
+                        <div class="editor-body">
+<pre><code><span class="sql-keyword">SELECT</span>
+    <span class="sql-name">e</span>.<span class="sql-column">Nombre</span> <span class="sql-keyword">AS</span> <span class="sql-column">editorial</span>,
+    <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">AS</span> <span class="sql-column">cantidad_libros</span>
+<span class="sql-keyword">FROM</span> <span class="sql-name">Editoriales</span> <span class="sql-name">e</span>
+<span class="sql-keyword">INNER JOIN</span> <span class="sql-name">Libros</span> <span class="sql-name">l</span>
+    <span class="sql-keyword">ON</span> <span class="sql-name">l</span>.<span class="sql-column">idEditoriales</span> = <span class="sql-name">e</span>.<span class="sql-column">idEditoriales</span>
+<span class="sql-keyword">GROUP BY</span> <span class="sql-name">e</span>.<span class="sql-column">idEditoriales</span>, <span class="sql-name">e</span>.<span class="sql-column">Nombre</span>
+<span class="sql-keyword">HAVING</span> <span class="sql-keyword">COUNT</span>(*) &gt; <span class="sql-number">1</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 8: Funciones definidas por el usuario (UDF) -->
+        <div class="slide" id="slide-8">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title">Funciones definidas por el usuario (UDF)</h2>
+                    <p class="slide-intro" style="margin-bottom: 0.6rem;">Una función definida por el usuario es una función creada por el programador para realizar una operación específica dentro de la base de datos.</p>
+                    <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.1rem; line-height: 1.5;">A diferencia de las funciones incorporadas de MySQL, las UDF son desarrolladas según las necesidades del sistema.</p>
+
+                    <!-- Características UDF -->
+                    <div class="udf-features-grid">
+                        <div class="udf-feature-item">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            <span>Pueden recibir parámetros de entrada.</span>
+                        </div>
+                        <div class="udf-feature-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <span>Realizan una operación.</span>
+                        </div>
+                        <div class="udf-feature-item">
+                            <i class="fa-solid fa-reply"></i>
+                            <span>Devuelven un único valor mediante <code>RETURN</code>.</span>
+                        </div>
+                        <div class="udf-feature-item">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <span>Se pueden reutilizar en distintas consultas.</span>
+                        </div>
+                    </div>
+
+                    <p class="sql-applied-hint">
+                        <i class="fa-solid fa-code"></i> <strong>Ejemplo de nuestro proyecto:</strong>
+                    </p>
+                </div>
+
+                <!-- Recuadro SQL a la derecha -->
+                <div class="code-area">
+                    <div class="sql-editor-window">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="editor-title"><i class="fa-solid fa-terminal"></i> fn_descuento.sql</span>
+                        </div>
+                        <div class="editor-body">
+<pre><code><span class="sql-keyword">CREATE FUNCTION</span> <span class="sql-name">fn_descuento</span>(
+    <span class="sql-column">p_precio</span> <span class="sql-type">DECIMAL</span>(<span class="sql-number">10</span>,<span class="sql-number">2</span>),
+    <span class="sql-column">p_porcentaje</span> <span class="sql-type">DECIMAL</span>(<span class="sql-number">5</span>,<span class="sql-number">2</span>)
+)
+<span class="sql-keyword">RETURNS</span> <span class="sql-type">DECIMAL</span>(<span class="sql-number">10</span>,<span class="sql-number">2</span>)
+<span class="sql-keyword">DETERMINISTIC</span>
+<span class="sql-keyword">BEGIN</span>
+    <span class="sql-keyword">RETURN</span> <span class="sql-column">p_precio</span> -
+        (<span class="sql-column">p_precio</span> * <span class="sql-column">p_porcentaje</span> / <span class="sql-number">100</span>);
+<span class="sql-keyword">END</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 9: Triggers (Disparadores) -->
+        <div class="slide" id="slide-9">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title">Triggers (Disparadores)</h2>
+                    <p class="slide-intro" style="margin-bottom: 0.6rem; font-size: 1.02rem;">Un trigger es un conjunto de instrucciones que se ejecuta automáticamente cuando ocurre un evento determinado en una tabla.</p>
+
+                    <!-- Operaciones, Momentos y Contexto -->
+                    <div class="trigger-box">
+                        <div class="trigger-box-section">
+                            <div class="trigger-section-title"><i class="fa-solid fa-bolt"></i> Puede ejecutarse ante operaciones:</div>
+                            <div class="trigger-badges-row">
+                                <span class="trigger-badge"><code>INSERT</code> Inserción de registros</span>
+                                <span class="trigger-badge"><code>UPDATE</code> Modificación de registros</span>
+                                <span class="trigger-badge"><code>DELETE</code> Eliminación de registros</span>
+                            </div>
+                        </div>
+
+                        <div class="trigger-box-section">
+                            <div class="trigger-section-title"><i class="fa-solid fa-clock"></i> Momentos de ejecución:</div>
+                            <div class="trigger-badges-row">
+                                <span class="trigger-badge"><code>BEFORE</code> Antes de realizar la operación</span>
+                                <span class="trigger-badge"><code>AFTER</code> Después de realizar la operación</span>
+                            </div>
+                        </div>
+
+                        <div class="trigger-box-section">
+                            <div class="trigger-section-title"><i class="fa-solid fa-clock-rotate-left"></i> Dentro de un trigger:</div>
+                            <div class="trigger-badges-row">
+                                <span class="trigger-badge"><code>OLD</code> Representa los valores anteriores</span>
+                                <span class="trigger-badge"><code>NEW</code> Representa los valores nuevos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="sql-applied-hint">
+                        <i class="fa-solid fa-code"></i> <strong>Ejemplo de nuestro proyecto:</strong>
+                    </p>
+                </div>
+
+                <!-- Recuadro SQL a la derecha -->
+                <div class="code-area">
+                    <div class="sql-editor-window">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="editor-title"><i class="fa-solid fa-terminal"></i> trigger_auditoria.sql</span>
+                        </div>
+                        <div class="editor-body">
+<pre><code><span class="sql-keyword">CREATE TRIGGER</span> <span class="sql-name">trg_libros_auditar_precio</span>
+<span class="sql-keyword">AFTER UPDATE ON</span> <span class="sql-name">Libros</span>
+<span class="sql-keyword">FOR EACH ROW</span>
+<span class="sql-keyword">BEGIN</span>
+    <span class="sql-keyword">IF</span> <span class="sql-column">OLD</span>.<span class="sql-column">Precio</span> &lt;&gt; <span class="sql-column">NEW</span>.<span class="sql-column">Precio</span> <span class="sql-keyword">THEN</span>
+        <span class="sql-keyword">INSERT INTO</span> <span class="sql-name">Auditoria_Precios</span>
+        (<span class="sql-column">idLibros</span>, <span class="sql-column">Precio_Anterior</span>, <span class="sql-column">Precio_Nuevo</span>)
+        <span class="sql-keyword">VALUES</span>
+        (<span class="sql-column">OLD</span>.<span class="sql-column">idLibros</span>, <span class="sql-column">OLD</span>.<span class="sql-column">Precio</span>, <span class="sql-column">NEW</span>.<span class="sql-column">Precio</span>);
+    <span class="sql-keyword">END IF</span>;
+<span class="sql-keyword">END</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 10: Integridad referencial -->
+        <div class="slide" id="slide-10">
+            <div class="content split-content sql-split">
+                <div class="text-area">
+                    <h2 class="slide-title">Integridad referencial</h2>
+                    <p class="slide-intro" style="margin-bottom: 0.5rem; font-size: 1.02rem;">La integridad referencial es una regla que garantiza que las relaciones entre tablas sean válidas.</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.6rem; line-height: 1.45;">Se implementa mediante <strong>claves foráneas (FK)</strong>, que vinculan un registro con otro existente en una tabla relacionada.</p>
+
+                    <div class="ref-example-note">
+                        <i class="fa-solid fa-link text-lapacho"></i>
+                        <span>Por ejemplo, en nuestro proyecto, cada usuario tiene un <code>idRoles</code> que debe corresponder a un rol existente en la tabla <code>Roles</code>.</span>
+                    </div>
+
+                    <p style="font-size: 0.88rem; font-weight: 700; color: var(--lapacho-dark); margin: 0.6rem 0 0.35rem 0;">Al eliminar o modificar un registro relacionado:</p>
+
+                    <div class="ref-actions-list">
+                        <div class="ref-action-item">
+                            <code>ON DELETE CASCADE</code>
+                            <span>Elimina automáticamente los registros dependientes.</span>
+                        </div>
+                        <div class="ref-action-item">
+                            <code>ON DELETE RESTRICT</code>
+                            <span>Impide eliminar un registro si tiene registros relacionados.</span>
+                        </div>
+                        <div class="ref-action-item">
+                            <code>ON UPDATE CASCADE</code>
+                            <span>Actualiza automáticamente las claves foráneas cuando cambia la clave referenciada.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagrama Relacional de Roles y Usuarios a la derecha -->
+                <div class="schema-diagram-area">
+                    <!-- Tabla Roles (1) -->
+                    <div class="schema-table-card">
+                        <div class="schema-table-header">
+                            <h4><i class="fa-solid fa-table"></i> Roles</h4>
+                            <span class="schema-cardinality">1 (Uno)</span>
+                        </div>
+                        <div class="schema-table-body">
+                            <div class="schema-column-row schema-highlight-fk">
+                                <span class="schema-col-name"><i class="fa-solid fa-key pk-icon"></i> <strong>idRoles</strong></span>
+                                <span class="schema-col-type">INT [PK]</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Nombre_Rol</span>
+                                <span class="schema-col-type">VARCHAR(30)</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Descripcion</span>
+                                <span class="schema-col-type">VARCHAR(150)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conector de Relación -->
+                    <div class="schema-connector">
+                        <div class="connector-line-v"></div>
+                        <div class="connector-badge-pill">
+                            <i class="fa-solid fa-link"></i> 1 : N (Muchos a Uno)
+                        </div>
+                    </div>
+
+                    <!-- Tabla Usuarios (N) -->
+                    <div class="schema-table-card">
+                        <div class="schema-table-header">
+                            <h4><i class="fa-solid fa-table"></i> Usuarios</h4>
+                            <span class="schema-cardinality">N (Muchos)</span>
+                        </div>
+                        <div class="schema-table-body">
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><i class="fa-solid fa-key pk-icon"></i> <strong>idUsuarios</strong></span>
+                                <span class="schema-col-type">INT [PK]</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Nombre</span>
+                                <span class="schema-col-type">VARCHAR(50)</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Apellido</span>
+                                <span class="schema-col-type">VARCHAR(50)</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Email</span>
+                                <span class="schema-col-type">VARCHAR(100)</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> Contrasenia</span>
+                                <span class="schema-col-type">VARCHAR(255)</span>
+                            </div>
+                            <div class="schema-column-row">
+                                <span class="schema-col-name"><span class="col-bullet">&bull;</span> FechaRegistro</span>
+                                <span class="schema-col-type">DATETIME</span>
+                            </div>
+                            <div class="schema-column-row schema-highlight-fk">
+                                <span class="schema-col-name"><i class="fa-solid fa-link fk-icon"></i> <strong>idRoles</strong></span>
+                                <span class="schema-col-type">INT [FK]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 11: Cierre -->
+        <div class="slide" id="slide-11">
+            <div class="content center-content">
+                <i class="fa-solid fa-hands-clapping icon-xlarge text-lapacho fade-in-up"></i>
+                <h1 class="title fade-in-up delay-1">¡Gracias por su atención!</h1>
+                <div class="next-step-box fade-in-up delay-2">
+                    <h3><i class="fa-solid fa-laptop-code"></i> Aplicación de lo dado en nuestro proyecto</h3>
+                    <p>Hemos preparado un script con todo lo explicado para ver el funcionamiento real de <code>BibliotecaDigital</code> en el gestor de base de datos.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal para agrandar la imagen con zoom -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></span>
+        <div class="modal-zoom-container">
+            <img id="expandedImg" class="modal-img-zoom">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
